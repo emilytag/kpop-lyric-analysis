@@ -3,6 +3,7 @@ import songData from "../data/all_songs.json"
 import yearAverages from "../data/year_averages.json"
 import artistInfo from "../data/group_companies.json"
 import { useRef, useEffect, useState } from "react";
+import { showSpotlight } from './artist-spotlight';
 
 const height = 930;
 const width = 1000;
@@ -87,6 +88,24 @@ function drawChart(svg) {
         })
         .on('mouseout', function (d) {
             d3.select("#tooltip").classed("hidden", true)
+        })
+        .on('click', function () {
+            d3.select(".preview__item-title")
+            .select('span')
+            .text(d3.select(this).attr("artist"))
+
+            d3.select('.preview__item-subtitle')
+            .select('span')
+            .text(d3.select(this).attr("company"))
+
+            d3.select('.preview__item-meta')
+            .select('span')
+            .text(d3.select(this).attr("generation"))
+
+            d3.select('.content__overlay')
+            .style("background", d3.select(this).style('fill'))
+            
+            showSpotlight(d3.select('.preview__item').node())
         });
 
     svg.append("g")
@@ -202,7 +221,7 @@ function drawChart(svg) {
                     })
                     .transition()
                     .duration(500)
-                    .style("fill", function(d) { return companyPalette[d3.select(this).attr("company")]})
+                    .style("fill", function (d) { return companyPalette[d3.select(this).attr("company")] })
             } else {
                 d3.selectAll("circle")
                     .filter(function (d) {

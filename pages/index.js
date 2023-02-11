@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import D3Scatter from '../components/d3-scatter';
-//import Bar from '../components/barchart'
+import artistSpotlight from '../components/artist-spotlight';
 
 export default function Home() {
   return (
@@ -11,7 +11,28 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <h1>Title TBD</h1>
+      <div class="chart-text">
       <D3Scatter />
+      <p>tk tk lorem ipsum im going to write some things here a lot of things
+        lets get a paragraph going! what comebacks do you like lately? ok nice
+        im managing to get the hang of css but only slightly. here's where i'll
+        talk about kpop idols and time and lyricism and linguistics.
+      </p>
+      </div>
+      <div class="content__overlay"></div>
+			<div class="preview">
+				<div class="preview__item">
+					<h2 class="preview__item-title oh"><span class="oh__inner"></span></h2>
+					<h3 class="preview__item-subtitle oh"><span class="oh__inner"></span></h3>
+					<span class="preview__item-meta oh"><span class="oh__inner"></span></span>
+				</div>
+				<button class="unbutton preview__back" aria-label="Back to content">
+					<svg width="200px" height="36px" viewBox="0 0 50 9">
+						<path vector-effect="non-scaling-stroke" d="m0 4.5 5-3m-5 3 5 3m45-3h-77"></path>
+					</svg>
+				</button>
+			</div>
     </>
   )
 }
