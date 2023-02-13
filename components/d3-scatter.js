@@ -2,8 +2,10 @@ import * as d3 from 'd3';
 import songData from "../data/all_songs.json"
 import yearAverages from "../data/year_averages.json"
 import artistInfo from "../data/group_companies.json"
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { showSpotlight } from './artist-spotlight';
+import { drawArtistChart } from './artist-scatter';
+import colorPalette from '../data/color_palette.json'
 
 const height = 930;
 const width = 1000;
@@ -11,13 +13,6 @@ const margin = { top: 30, right: 30, bottom: 30, left: 30 },
     width1 = width - margin.left - margin.right,
     height1 = height - margin.top - margin.bottom;
 const xOffset = 25;
-
-const colorPalette = {
-    "first generation": '#F2CD5C',
-    "second generation": '#F2921D',
-    "third generation": '#A61F69',
-    "fourth generation": '#400E32'
-}
 
 const companyPalette = {
     "SM Entertainment": "#8BBCCC",
@@ -72,6 +67,7 @@ function drawChart(svg) {
         .attr("artist", function (d) { return d.artist_info.name })
         .attr("generation", function (d) { return d.artist_info.generation })
         .attr("company", function (d) { return artistInfo[d.artist_info.name] })
+        .attr("lyrics", function(d) { return d.song_info.lyrics })
         .style("fill", function (d) { return colorPalette[d.artist_info.generation] })
         .style("opacity", '0.75')
         .attr("r", 4)
@@ -106,6 +102,13 @@ function drawChart(svg) {
             .style("background", d3.select(this).style('fill'))
             
             showSpotlight(d3.select('.preview__item').node())
+
+            const artistScatter = d3.select(".preview__item").append("svg")
+            drawArtistChart(artistScatter, d3.select(this).attr("artist"), d3.select(this).style('fill'))
+
+            d3.select('.preview__item-box--right')
+            .select('p')
+            .text(d3.select(this).attr("lyrics"))
         });
 
     svg.append("g")

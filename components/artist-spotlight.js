@@ -1,10 +1,10 @@
 import { gsap } from 'gsap';
 import { PreviewItem } from './preview-item';
+import * as d3 from 'd3';
 
 let isAnimating = false;
 
 // TODO text styling
-// TODO bring in d3 chart with only that artist's songs
 
 export function showSpotlight(artist) {
     const contentOverlay = document.querySelector('.content__overlay');
@@ -91,6 +91,10 @@ export function showSpotlight(artist) {
             .to(previewItem.DOM.el, {
                 duration: 0.6,
                 clipPath: `circle(0vmax at ${winsize.width / 2}px ${winsize.height / 2}px)`
+            }, 'start')
+            .to(previewItem.DOM.svg, {
+                opacity: 0,
+                scale: 0,
             }, 'start')
             .to(contentOverlay, {
                 duration: 0.6,
