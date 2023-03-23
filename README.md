@@ -1,8 +1,10 @@
 An interactive visualization for lyrics across the four generations of kpop.
 
 ## Getting Started
-To run the viz locally:
-```bash
+This project is primarily written in Javascript using NextJS and the visualizations are powered by D3.js. It was developed using `Node v18`.
+To run the viz locally first clone the repo, enter the directory, and run:
+```bash 
+npm install
 npm run dev
 ```
 
