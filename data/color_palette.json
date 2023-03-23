@@ -1,6 +1,22 @@
 {
-    "first generation": "#F2CD5C",
-    "second generation": "#F2921D",
-    "third generation": "#A61F69",
-    "fourth generation": "#400E32"
+    "first generation": {
+        "main_color": "#F2CD5C",
+        "title_color": "#A61F69",
+        "subtitle_color": "#A61F69"
+    },
+    "second generation": {
+        "main_color": "#F2921D",
+        "title_color": "#400E32",
+        "subtitle_color": "#A61F69"
+    },
+    "third generation": {
+        "main_color": "#A61F69",
+        "title_color": "#F2CD5C",
+        "subtitle_color": "#F2921D"
+    },
+    "fourth generation": {
+        "main_color": "#400E32",
+        "title_color": "#F2921D",
+        "subtitle_color": "#F2CD5C"
+    }
 }

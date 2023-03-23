@@ -1,5 +1,4 @@
 import * as d3 from 'd3';
-import { useRef, useEffect } from "react";
 import songData from "../data/all_songs.json"
 
 const height = 550;
@@ -86,5 +85,9 @@ export function drawArtistChart(svg, artist, color) {
             d3.select('.preview__item-box--right')
             .select('p')
             .text(d3.select(this).attr("lyrics"))
+
+            d3.select('.preview__item-box--right')
+            .select('span')
+            .text(d3.select(this).attr("title"))
         })
 }

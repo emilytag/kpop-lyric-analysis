@@ -1,13 +1,12 @@
 import * as d3 from 'd3';
 import songData from "../data/all_songs.json"
-import yearAverages from "../data/year_averages.json"
 import artistInfo from "../data/group_companies.json"
 import { useRef, useEffect } from "react";
 import { showSpotlight } from './artist-spotlight';
 import { drawArtistChart } from './artist-scatter';
 import colorPalette from '../data/color_palette.json'
 
-const height = 930;
+const height = 800;
 const width = 1000;
 const margin = { top: 30, right: 30, bottom: 30, left: 30 },
     width1 = width - margin.left - margin.right,
@@ -68,12 +67,12 @@ function drawChart(svg) {
         .attr("generation", function (d) { return d.artist_info.generation })
         .attr("company", function (d) { return artistInfo[d.artist_info.name] })
         .attr("lyrics", function(d) { return d.song_info.lyrics })
-        .style("fill", function (d) { return colorPalette[d.artist_info.generation] })
+        .style("fill", function (d) { return colorPalette[d.artist_info.generation].main_color })
         .style("opacity", '0.75')
         .attr("r", 4)
         .on('mouseover', function (d) {
             const xpos = parseFloat(d3.select(this).attr("cx")) + 40
-            const ypos = parseFloat(d3.select(this).attr("cy")) + 10
+            const ypos = parseFloat(d3.select(this).attr("cy")) + 45
             d3.select("#tooltip")
                 .style("left", `${xpos}px`)
                 .style("top", `${ypos}px`)
@@ -86,17 +85,22 @@ function drawChart(svg) {
             d3.select("#tooltip").classed("hidden", true)
         })
         .on('click', function () {
+            const currentGen = d3.select(this).attr("generation")
+
             d3.select(".preview__item-title")
             .select('span')
             .text(d3.select(this).attr("artist"))
+            .style('color', colorPalette[currentGen].title_color)
 
             d3.select('.preview__item-subtitle')
             .select('span')
             .text(d3.select(this).attr("company"))
+            .style('color', colorPalette[currentGen].title_color)
 
             d3.select('.preview__item-meta')
             .select('span')
-            .text(d3.select(this).attr("generation"))
+            .text(currentGen)
+            .style('color', colorPalette[currentGen].subtitle_color)
 
             d3.select('.content__overlay')
             .style("background", d3.select(this).style('fill'))
@@ -107,8 +111,14 @@ function drawChart(svg) {
             drawArtistChart(artistScatter, d3.select(this).attr("artist"), d3.select(this).style('fill'))
 
             d3.select('.preview__item-box--right')
+            .select('span')
+            .text(d3.select(this).attr("title"))
+            .style('color', colorPalette[currentGen].subtitle_color)
+
+            d3.select('.preview__item-box--right')
             .select('p')
             .text(d3.select(this).attr("lyrics"))
+            .style('color', colorPalette[currentGen].title_color)
         });
 
     svg.append("g")
@@ -238,7 +248,7 @@ function drawChart(svg) {
                     .duration(500)
                     .style("opacity", "0.75")
                     .attr("cy", function (d) { return yScale(d.song_info.ratio) })
-                    .style("fill", function (d) { return colorPalette[d.artist_info.generation] })
+                    .style("fill", function (d) { return colorPalette[d.artist_info.generation].main_color })
             }
         })
     d3.selectAll("button")
@@ -257,7 +267,7 @@ function drawChart(svg) {
                 .attr("cy", function (d) {
                     return yScale(d.song_info.ratio)
                 })
-                .style("fill", function (d) { return colorPalette[d.artist_info.generation] })
+                .style("fill", function (d) { return colorPalette[d.artist_info.generation].main_color })
 
             svg.selectAll(".x-axis")
                 .transition()

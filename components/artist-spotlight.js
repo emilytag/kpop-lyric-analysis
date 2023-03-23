@@ -1,6 +1,5 @@
 import { gsap } from 'gsap';
 import { PreviewItem } from './preview-item';
-import * as d3 from 'd3';
 
 let isAnimating = false;
 
