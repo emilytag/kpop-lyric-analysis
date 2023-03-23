@@ -12,7 +12,7 @@ npm run dev
 - [x] Scrape charting tracks from Wikipedia, for example [Hyuna's Discography](https://en.wikipedia.org/wiki/Hyuna_discography#Singles)
 - [x] Scrape lyrics from Genius, [final data here](https://github.com/emilytag/kpop-lyric-analysis/blob/main/data/all_songs.json)
 - [x] Segment lyrics into English and Korean, ignoring words like `ayo` and `la la la` etc that are neither language
-- [x] Calculate simple ratios to determine English to Korean usage
+- [x] Calculate simple ratios to determine English to Korean usage per song
 - [x] Create an interactive scatterplot to visualize the whole of the industry
 ![WIP Scatterplot](https://github.com/emilytag/kpop-lyric-analysis/blob/main/screenshots/Scatterplot%20WIP.png)
 - [x] Clickthrough scatterplot entries to view artist information. This modal includes a scatterplot of that artist's songs, and the lyrics of the song that was clicked
