@@ -15,7 +15,7 @@ npm run dev
 - [x] Calculate simple ratios to determine English to Korean usage per song
 - [x] Create an interactive scatterplot to visualize the whole of the industry
 ![WIP Scatterplot](https://github.com/emilytag/kpop-lyric-analysis/blob/main/screenshots/Scatterplot%20WIP.png)
-- [x] Clickthrough scatterplot entries to view artist information. This modal includes a scatterplot of that artist's songs, and the lyrics of the song that was clicked
+- [x] Clickthrough scatterplot entries to view artist information. This modal includes a scatterplot of that artist's songs, and the lyrics of the song that was clicked. Clicking other songs in the scatterplot will display the lyrics to the right
 ![WIP Artist Spotlight](https://github.com/emilytag/kpop-lyric-analysis/blob/main/screenshots/Clickthrough%20WIP.png)
 
 ## To Dos
